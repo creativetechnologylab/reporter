@@ -1,0 +1,6 @@
+{
+	"mqtt": {
+		"host": "mqtt://127.0.0.1"
+	},
+	"update_frequency": 60000
+}
