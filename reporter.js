@@ -4,10 +4,7 @@ var mqtt = require( 'mqtt' );
 var client = mqtt.connect( config.mqtt.host );
 var os = require( 'os' );
 
-var hostname = os.hostname().split( '.' )[0];
-
 client.on( 'connect', function() {
-	console.log( 'IP Reporting for: ' + hostname );
 	report();
 	setInterval( report, config.update_frequency );
 } );
@@ -24,7 +21,8 @@ function report() {
 	}
 
 	if ( ip ) {
-		console.log( 'Reported: ' + ip );
+		var hostname = os.hostname().split( '.' )[0];
+		console.log( 'Reported: computers/' + hostname + ' ' + ip );
 		client.publish( 'computers/' + hostname, ip );
 	}
 }
